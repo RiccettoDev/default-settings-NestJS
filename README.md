@@ -59,7 +59,6 @@ model User {
   email    String       @unique @db.VarChar(100)
   password String       @db.VarChar(100)
   age      Int
-  teams    TeamMember[]
 
   @@map("users")
 }
