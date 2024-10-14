@@ -1,6 +1,10 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+<div display="flex" gap="5px">
+  <img src="./img/nodejs.png" alt="nodeJs" width="160"/>
+  <img src="./img/nestjs.png" alt="nestJs" width="300"/>
+  <img src="./img/docker.png" alt="docker" width="150"/>
+  <img src="./img/prisma.png" alt="prisma" width="200"/>
+  <img src="./img/postgres.png" alt="postgres" width="150"/>
+</div>
 
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
