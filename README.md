@@ -1,10 +1,11 @@
 <div style="display: flex; gap: 5px;">
-  <img src="./img/nodejs.png" alt="nodeJs" width="160"/>
-  <img src="./img/nestjs.png" alt="nestJs" width="300"/>
-  <img src="./img/docker.png" alt="docker" width="150"/>
-  <img src="./img/prisma.png" alt="prisma" width="200" style="margin-left: 30px; margin-right: 30px;"/>
-  <img src="./img/postgres.png" alt="postgres" width="150"/>
+  <img src="./img/nodejs.png" alt="nodeJs" width="120"/>
+  <img src="./img/nestjs.png" alt="nestJs" width="180"/>
+  <img src="./img/docker.png" alt="docker" width="120"/>
+  <img src="./img/prisma.png" alt="prisma" width="140" style="margin-left: 10px; margin-right: 10px;"/>
+  <img src="./img/postgres.png" alt="postgres" width="120"/>
 </div>
+
 
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
