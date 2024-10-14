@@ -1,8 +1,8 @@
 <div style="display: flex; gap: 5px;">
   <img src="./img/nodejs.png" alt="nodeJs" width="120"/>
   <img src="./img/nestjs.png" alt="nestJs" width="180"/>
-  <img src="./img/docker.png" alt="docker" width="120"/>
-  <img src="./img/prisma.png" alt="prisma" width="140" style="margin-left: 10px; margin-right: 10px;"/>
+  <img src="./img/docker.png" alt="docker" width="100"/>
+  <img src="./img/prisma.png" alt="prisma" width="150" style="margin-left: 10px; margin-right: 10px;"/>
   <img src="./img/postgres.png" alt="postgres" width="120"/>
 </div>
 
