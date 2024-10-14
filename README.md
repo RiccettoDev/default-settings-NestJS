@@ -3,7 +3,7 @@
   <img src="./img/nestjs.png" alt="nestJs" width="180"/>
   <img src="./img/docker.png" alt="docker" width="100"/>
   <img src="./img/postgres.png" alt="postgres" width="120"/>
-  <img src="./img/prisma.png" alt="prisma" width="180"/>
+  <img src="./img/prisma.png" alt="prisma" width="250"/>
 </div>
 
 
