@@ -2,10 +2,9 @@
   <img src="./img/nodejs.png" alt="nodeJs" width="120"/>
   <img src="./img/nestjs.png" alt="nestJs" width="180"/>
   <img src="./img/docker.png" alt="docker" width="100"/>
-  <img src="./img/prisma.png" alt="prisma" width="150" style="margin-left: 30px; margin-right: 30px;"/>
+  <img src="./img/prisma.png" alt="prisma" width="150" style="margin-left: 50px; margin-right: 50px;"/>
   <img src="./img/postgres.png" alt="postgres" width="120"/>
 </div>
-
 
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
