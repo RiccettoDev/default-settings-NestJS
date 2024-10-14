@@ -1,90 +1,158 @@
+# Default Settings 
+
 <div style="display: flex; gap: 5px; justify-content: center; align-items: center;">
   <img src="./img/nodejs.png" alt="nodeJs" width="120"/>
   <img src="./img/nestjs.png" alt="nestJs" width="180"/>
   <img src="./img/docker.png" alt="docker" width="100"/>
-  <img src="./img/postgres.png" alt="postgres" width="120"/>
   <img src="./img/prisma.png" alt="prisma" width="250"/>
+  <img src="./img/postgres.png" alt="postgres" width="120"/>
 </div>
 
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+  <p> Initial configurations of a project with docker, nextJS, prism orm and postgres.</p>
     <p align="center">
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
 <a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+# Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Project setup
+## Start project
 
 ```bash
-$ npm install
+nest new 'name-project'
 ```
 
-## Compile and run the project
+## Install Prisma
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install @prisma/client
+npm install prisma --save-dev
 ```
 
-## Run tests
+## Start Prisma
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npx prisma init
 ```
 
-## Resources
+## Config ```prisma/schema.prisma```
 
-Check out a few resources that may come in handy when working with NestJS:
+### -> example:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```bash
 
-## Support
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-arm64-openssl-3.0.x"] // configuration to use docker. without docker you don't need this part
+}
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+datasource db {
+  provider = "postgresql" // or another bank
+  url      = env("DATABASE_URL")
+}
 
-## Stay in touch
+model User {
+  id       Int          @id @default(autoincrement())
+  name     String       @db.VarChar(100)
+  surname  String       @db.VarChar(100)
+  email    String       @unique @db.VarChar(100)
+  password String       @db.VarChar(100)
+  age      Int
+  teams    TeamMember[]
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+  @@map("users")
+}
 
-## License
+```
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+## Config file .env
+
+```bash
+DATABASE_URL="postgresql://user:password@localhost:5432/mydatabase"
+```
+
+## Config file Dockerfile
+
+```bash
+# Usar a imagem base do Node.js
+FROM node:18
+
+# Criar diretório de trabalho
+WORKDIR /usr/src/app
+
+# Copiar o package.json e o package-lock.json
+COPY package*.json ./
+
+# Instalar as dependências
+RUN npm install
+
+# Copiar o restante da aplicação
+COPY . .
+
+# Rodar o Prisma
+RUN npx prisma generate
+
+# Expor a porta 3000
+EXPOSE 3000
+
+# Iniciar a aplicação
+CMD ["npm", "run", "start:dev"]
+
+```
+
+## Config file docker-compose.yml
+
+```bash
+version: '3.8'
+services:
+  postgres:
+    image: postgres:14
+    container_name: postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  nestjs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://user:password@postgres:5432/mydatabase
+    volumes:
+      - .:/usr/src/app
+
+volumes:
+  postgres_data:
+
+```
+
+## Generate DB in Prisma
+
+```bash
+npx prisma generate
+```
+
+## Start application and DB with docker
+
+```bash
+docker-compose up --build
+```
+
+## Create migrations with Prisma
+
+```bash
+npx prisma migrate dev
+```
+
+# Next continue development
+😆
